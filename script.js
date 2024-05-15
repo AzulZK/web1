@@ -22,6 +22,11 @@ track.addEventListener('mouseleave', endDrag);
 track.addEventListener('mousemove', drag);
 track.addEventListener('touchmove', drag);
 
+// Evitar o comportamento padrão de arrastar do navegador
+track.addEventListener('dragstart', (e) => {
+    e.preventDefault();
+});
+
 function startDrag(event) {
     isDragging = true;
     startPos = getPositionX(event);
@@ -48,7 +53,9 @@ function endDrag() {
 function drag(event) {
     if (isDragging) {
         const currentPosition = getPositionX(event);
-        currentTranslate = prevTranslate + currentPosition - startPos;
+        const diff = currentPosition - startPos;
+        currentTranslate = prevTranslate + diff;
+        setSliderPosition();
     }
 }
 
