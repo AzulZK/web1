@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Equipamentos Esportivos</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+    <header>
+        <h1>Contato</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Entre em Contato</h2>
+            <form action="https://formspree.io/f/mdoqjpog" method="POST">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem" required></textarea>
+                
+                <button type="submit">Enviar</button>
+                <p class="form-status"></p>
+            </form>
+            <script>
+            document.querySelector('form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const form = e.target;
+                const status = document.querySelector('.form-status');
+                try {
+                    let response = await fetch(form.action, {
+                        method: form.method,
+                        body: new FormData(form),
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    if (response.ok) {
+                        status.textContent = "Mensagem enviada com sucesso!";
+                        form.reset();
+                    } else {
+                        status.textContent = "Ocorreu um problema ao enviar a mensagem.";
+                    }
+                } catch (error) {
+                    status.textContent = "Ocorreu um problema ao enviar a mensagem.";
+                }
+            });
+            </script>
+            
+        </section>
+    </main>
+    <footer>
+        <p>&copy; L&A Equipamentos Esportivos</p>
+    </footer>
+</body>
+</html>
