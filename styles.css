@@ -4,15 +4,22 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    display: flex;
+    flex-direction: column;
 }
-
+html, body{
+    height: 100%;
+    margin: 0;
+}
 header {
     background-color: #007BFF;
     color: #fff;
-    padding: 10px 0;
+    padding: 8px;
     text-align: center;
 }
-
+header h1{
+    color: #ffffff;
+}
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -31,34 +38,43 @@ nav ul li a {
 main {
     padding: 20px;
     background-color: #ffffff;
+    flex:1;
+
 }
 
 h1, h2 {
     color: #007BFF;
 }
-
+.carousel h1{
+    text-align: center;
+    color: #007BFF;
+}
 footer {
     background-color: #007BFF;
     color: #fff;
     text-align: center;
     padding: 10px 0;
-    position: fixed;
     width: 100%;
+    position: relative;
     bottom: 0;
+}
+
+.carousel-container {
+    display: flex;
+    justify-content: space-between; /* Adiciona espaço entre os carrosséis */
 }
 
 .carousel {
     position: relative;
-    margin: 20px auto;
-    max-width: 600px;
+    width: 20%; /* Define a largura de cada carrossel */
     overflow: hidden;
     border: 2px solid #007BFF;
     border-radius: 10px;
+    user-select: none; /* Prevents text selection during drag */
 }
 
 .carousel-track-container {
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
@@ -68,6 +84,7 @@ footer {
     list-style: none;
     padding: 0;
     margin: 0;
+    cursor: grab;
 }
 
 .carousel-slide {
@@ -80,23 +97,28 @@ footer {
     border-radius: 10px;
 }
 
+.carousel-slide p {
+    text-align: center;
+    padding: 10px;
+}
+
 .carousel-button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
     border: none;
-    color: white;
-    font-size: 2rem;
-    padding: 0 10px;
     cursor: pointer;
-    z-index: 10;
+    font-size: 24px;
+    z-index: 1;
+    padding: 10px;
+    border-radius: 50%;
 }
 
-.carousel-button.prev {
-    left: 10px;
+.prev-button {
+    left: -8px;
 }
 
-.carousel-button.next {
-    right: 10px;
+.next-button {
+    right: -8px;
 }
