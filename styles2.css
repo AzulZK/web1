@@ -55,7 +55,7 @@ footer {
     text-align: center;
     padding: 10px 0;
     width: 100%;
-    position: relative;
+    position: relative; /* Mantém a posição relativa para o posicionamento absoluto do círculo */
     bottom: 0;
 }
 
@@ -121,4 +121,39 @@ footer {
 
 .next-button {
     right: -8px;
+}
+
+.caixa{
+    border: solid ;
+    width: 300px;
+    height: 500px;
+}
+.conteiner{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    
+}
+.conteiner-footer {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.contato {
+    background-color: #f4f4f4;
+    width: 200px;
+    height: 50px;
+    border:solid;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.contato h1 {
+    margin: 0;
+    font-size: 1.3em;
 }
