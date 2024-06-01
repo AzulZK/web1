@@ -37,6 +37,22 @@
     </section>
     </div>
     
+        <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Modal</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Some text in the Modal..</p>
+    </div>
+
+</div>
+
+
+
 </main>
 
 <footer>
@@ -47,6 +63,27 @@
         </div>
     </div>
 </footer>
+
+<!-- Modal -->
+<div id="contact-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Entre em Contato</h2>
+        <form action="https://formspree.io/f/mdoqjpog" method="POST">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" required></textarea>
+            
+            <button type="submit">Enviar</button>
+            <p class="form-status"></p>
+        </form>
+    </div>
+</div>
 
 
 </body>
