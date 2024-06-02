@@ -103,29 +103,50 @@ function setupCarousel(carouselContainer) {
 // Inicializar todos os carrosséis na página
 document.querySelectorAll('.carousel').forEach(setupCarousel);
 
-// Get the modal
-var modal = document.getElementById("myModal");
+// Modal
+document.addEventListener('DOMContentLoaded', (event) => {
+    const modal = document.getElementById('contact-modal');
+    const contactButton = document.querySelector('.contato');
+    const closeButton = document.querySelector('.close-button');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+    // Abre o modal ao clicar em "Entre em Contato"
+    contactButton.addEventListener('click', function() {
+        modal.style.display = 'flex'; // Usar 'flex' em vez de 'block'
+    });
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    // Fecha o modal ao clicar no botão de fechar
+    closeButton.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
 
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
+    // Fecha o modal se o usuário clicar fora dele
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-  
-}
+    // Envia o formulário ao ser submetido
+    document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const status = document.querySelector('.form-status');
+        try {
+            let response = await fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (response.ok) {
+                status.textContent = "Mensagem enviada com sucesso!";
+                form.reset();
+            } else {
+                status.textContent = "Ocorreu um problema ao enviar a mensagem.";
+            }
+        } catch (error) {
+            status.textContent = "Ocorreu um problema ao enviar a mensagem.";
+        }
+    });
+});
