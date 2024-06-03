@@ -6,19 +6,15 @@ body {
     color: #333;
     display: flex;
     flex-direction: column;
-}body {
-    font-family: Arial, sans-serif;
+}
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
     display: flex;
     flex-direction: column;
 }
-html, body{
-    height: 100%;
-    margin: 0;
-}
+
 header {
     background-color: #007BFF;
     color: #fff;
@@ -46,14 +42,20 @@ nav ul li a {
 main {
     padding: 20px;
     background-color: #ffffff;
-    flex:1;
+    flex: 1; /* Adiciona flex-grow para ocupar o espaço disponível */
+}
 
+/* Centralizar conteúdo no produtos.html */
+.produtos-page main {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
 }
 
 h1, h2 {
     color: #007BFF;
 }
-.carousel h1{
+.carousel h1 {
     text-align: center;
     color: #007BFF;
 }
@@ -69,12 +71,16 @@ footer {
 
 .carousel-container {
     display: flex;
-    justify-content: space-between; /* Adiciona espaço entre os carrosséis */
+    justify-content: center; /* Centraliza horizontalmente os carrosséis dentro do contêiner */
+    width: 100%;
+    max-width: 100%; /* Ajuste conforme necessário */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    gap: 1%;
 }
 
 .carousel {
     position: relative;
-    width: 20%; /* Define a largura de cada carrossel */
+    width: 50%; /* Define a largura de cada carrossel */
     overflow: hidden;
     border: 2px solid #007BFF;
     border-radius: 10px;
@@ -107,7 +113,7 @@ footer {
 
 .carousel-slide p {
     text-align: center;
-    padding: 10px;
+    padding: 10%;
 }
 
 .carousel-button {
@@ -142,211 +148,18 @@ footer {
     justify-content: center;
     
 }
+
 .conteiner-footer {
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
 }
-
 .contato {
     background-color: #f4f4f4;
     width: 200px;
     height: 50px;
-    border:solid;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.contato h1 {
-    margin: 0;
-    font-size: 1.3em;
-}
-
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 2; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: hidden; /* Disable scroll */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-    max-width: 600px; /* Optional: max width for larger screens */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Optional: add some shadow for a nicer look */
-    border-radius: 10px; /* Optional: rounded corners */
-    box-sizing: border-box; /* Ensure padding and border are included in the width */
-}
-
-  
-  /* The Close Button */
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-  
-.close-button:hover,
-.close-button:focus {
-    color: rgb(255, 0, 0);
-    text-decoration: none;
-    cursor: pointer;
-}
-
-html, body{
-    height: 100%;
-    margin: 0;
-}
-header {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 8px;
-    text-align: center;
-}
-header h1{
-    color: #ffffff;
-}
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-main {
-    padding: 20px;
-    background-color: #ffffff;
-    flex:1;
-
-}
-
-h1, h2 {
-    color: #007BFF;
-}
-.carousel h1{
-    text-align: center;
-    color: #007BFF;
-}
-footer {
-    background-color: #007BFF;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
-    width: 100%;
-    position: relative; /* Mantém a posição relativa para o posicionamento absoluto do círculo */
-    bottom: 0;
-}
-
-.carousel-container {
-    display: flex;
-    justify-content: space-between; /* Adiciona espaço entre os carrosséis */
-}
-
-.carousel {
-    position: relative;
-    width: 20%; /* Define a largura de cada carrossel */
-    overflow: hidden;
-    border: 2px solid #007BFF;
-    border-radius: 10px;
-    user-select: none; /* Prevents text selection during drag */
-}
-
-.carousel-track-container {
-    display: flex;
-    align-items: center;
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    cursor: grab;
-}
-
-.carousel-slide {
-    min-width: 100%;
-    transition: transform 0.5s ease;
-}
-
-.carousel-slide img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-.carousel-slide p {
-    text-align: center;
-    padding: 10px;
-}
-
-.carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    z-index: 1;
-    padding: 10px;
-    border-radius: 50%;
-}
-
-.prev-button {
-    left: -8px;
-}
-
-.next-button {
-    right: -8px;
-}
-
-.caixa{
-    border: solid ;
-    width: 300px;
-    height: 500px;
-}
-.conteiner{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    
-}
-.conteiner-footer {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.contato {
-    background-color: #f4f4f4;
-    width: 200px;
-    height: 50px;
-    border:solid;
+    border: solid;
     border-radius: 50px;
     display: flex;
     align-items: center;
@@ -370,29 +183,33 @@ footer {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content/Box */
-  .modal-content {
+}
+
+/* Modal Content/Box */
+.modal-content {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-  }
-  
-  /* The Close Button */
-  .close {
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close-button {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
+}
   
-  .close:hover,
-  .close:focus {
-    color: black;
+.close-button:hover,
+.close-button:focus {
+    color: rgb(255, 0, 0);
     text-decoration: none;
     cursor: pointer;
-    
-  }
+}
+
+/* Estilo específico para centralizar o carrossel no produtos.html */
+.center-carousel {
+    justify-content: center; /* Centraliza horizontalmente */
+}
