@@ -1,10 +1,101 @@
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM totalmente carregado e analisado");
+
+    // Modal
+    const modal = document.getElementById('contact-modal');
+    const contactButton = document.querySelector('.contato');
+    const closeButton = document.querySelector('.close-button');
+
+    if (!modal) {
+        console.error("Modal não encontrado!");
+    } else {
+        console.log("Modal encontrado!");
+    }
+    if (!contactButton) {
+        console.error("Botão de contato não encontrado!");
+    } else {
+        console.log("Botão de contato encontrado!");
+    }
+    if (!closeButton) {
+        console.error("Botão de fechar não encontrado!");
+    } else {
+        console.log("Botão de fechar encontrado!");
+    }
+
+    // Abre o modal ao clicar em "Entre em Contato"
+    if (contactButton) {
+        contactButton.addEventListener('click', function() {
+            console.log("Botão de contato clicado");
+            modal.style.display = 'block';
+        });
+    }
+
+    // Fecha o modal ao clicar no botão de fechar
+    if (closeButton) {
+        closeButton.addEventListener('click', function() {
+            console.log("Botão de fechar clicado");
+            modal.style.display = 'none';
+        });
+    }
+
+    // Fecha o modal se o usuário clicar fora dele
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            console.log("Clicado fora do modal");
+            modal.style.display = 'none';
+        }
+    });
+
+    // Envia o formulário ao ser submetido
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const status = document.querySelector('.form-status');
+            try {
+                let response = await fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                if (response.ok) {
+                    status.textContent = "Mensagem enviada com sucesso!";
+                    form.reset();
+                } else {
+                    status.textContent = "Ocorreu um problema ao enviar a mensagem.";
+                }
+            } catch (error) {
+                status.textContent = "Ocorreu um problema ao enviar a mensagem.";
+            }
+        });
+    } else {
+        console.error("Formulário não encontrado!");
+    }
+
+    // Configuração do carrossel
+    document.querySelectorAll('.carousel').forEach(setupCarousel);
+});
+
 // Função para configurar o carrossel
 function setupCarousel(carouselContainer) {
     const track = carouselContainer.querySelector('.carousel-track');
+    if (!track) {
+        console.error("Carousel track não encontrado!");
+        return;
+    }
+
     const slides = Array.from(track.children);
+    if (slides.length === 0) {
+        console.error("Slides não encontrados!");
+        return;
+    }
+
     const slideWidth = slides[0].getBoundingClientRect().width;
     const prevButton = carouselContainer.querySelector('.prev-button');
     const nextButton = carouselContainer.querySelector('.next-button');
+
     let isDragging = false;
     let startPos = 0;
     let currentTranslate = 0;
@@ -97,53 +188,3 @@ function setupCarousel(carouselContainer) {
         }
     }
 }
-
-document.querySelectorAll('.carousel').forEach(setupCarousel);
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Modal
-    const modal = document.getElementById('contact-modal');
-    const contactButton = document.querySelector('.contato');
-    const closeButton = document.querySelector('.close-button');
-
-    // Abre o modal ao clicar em "Entre em Contato"
-    contactButton.addEventListener('click', function() {
-        modal.style.display = 'block';
-    });
-
-    // Fecha o modal ao clicar no botão de fechar
-    closeButton.addEventListener('click', function() {
-        modal.style.display = 'none';
-    });
-
-    // Fecha o modal se o usuário clicar fora dele
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-
-    // Envia o formulário ao ser submetido
-    document.querySelector('form').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const form = e.target;
-        const status = document.querySelector('.form-status');
-        try {
-            let response = await fetch(form.action, {
-                method: form.method,
-                body: new FormData(form),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            if (response.ok) {
-                status.textContent = "Mensagem enviada com sucesso!";
-                form.reset();
-            } else {
-                status.textContent = "Ocorreu um problema ao enviar a mensagem.";
-            }
-        } catch (error) {
-            status.textContent = "Ocorreu um problema ao enviar a mensagem.";
-        }
-    });
-});
