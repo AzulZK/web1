@@ -188,3 +188,13 @@ function setupCarousel(carouselContainer) {
         }
     }
 }
+document.addEventListener("DOMContentLoaded", function() {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slideshow img');
+    
+    setInterval(function() {
+        slides[currentSlide].style.display = 'none';
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].style.display = 'block';
+    }, 1300);
+});
