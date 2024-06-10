@@ -7,6 +7,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 html, body {
     height: 100%;
     margin: 0;
@@ -15,14 +16,15 @@ html, body {
     flex-direction: column;
 }
 
+
 header {
-    background-color: #007BFF;
+    background-color: #8b0000;
     color: #fff;
     padding: 8px;
     text-align: center;
 }
 header h1{
-    color: #ffffff;
+    color: black;
 }
 nav ul {
     list-style-type: none;
@@ -35,14 +37,23 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: black;
     text-decoration: none;
 }
-
 main {
     padding: 20px;
-    background-color: #ffffff;
     flex: 1; /* Adiciona flex-grow para ocupar o espaço disponível */
+}
+main#pagina {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5) url("background.jpg") no-repeat;
+    background-size: 100% 100%;
+    flex: 1; /* Adiciona flex-grow para ocupar o espaço disponível */
+}
+
+
+main#pagina h1,h2,h3{
+    color: white;
 }
 
 /* Centralizar conteúdo no produtos.html */
@@ -51,17 +62,13 @@ main {
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
 }
-
-h1, h2 {
-    color: #007BFF;
-}
 .carousel h1 {
     text-align: center;
     color: #007BFF;
 }
 footer {
-    background-color: #007BFF;
-    color: #fff;
+    background-color: #8b0000;
+    color: black;
     text-align: center;
     padding: 10px 0;
     width: 100%;
@@ -85,6 +92,7 @@ footer {
     border: 2px solid #007BFF;
     border-radius: 10px;
     user-select: none; /* Prevents text selection during drag */
+    padding: 10px; /* Added padding to create space for the buy button */
 }
 
 .carousel-track-container {
@@ -109,7 +117,7 @@ footer {
 }
 
 .carousel-slide img {
-    height: 400px; /* Define uma altura fixa para a imagem */
+    height: 300px; /* Reduced height to make space for the buy button */
     object-fit: contain; /* Ajusta a imagem para cobrir a área definida mantendo a proporção */
     border-radius: 10px;
     display: block;
@@ -129,6 +137,7 @@ footer {
     text-align: center;
     color: #003cff;
     word-wrap: break-word; /* Adiciona quebra de palavra para que o texto não ultrapasse o contêiner */
+    font-size: 1.2em; /* Reduced font size */
 }
 
 .carousel-button {
@@ -151,11 +160,44 @@ footer {
 .next-button {
     right: -8px;
 }
+.fundo1 {
+    background-image: url("invistaemvoce.jpg");
+    background-size: contain; /* Ajusta a imagem para caber inteiramente no contêiner */
+    background-repeat: no-repeat;
+    background-position: center; /* Centraliza a imagem no contêiner */
+    
+}
+.slideshow {
+    max-width: 100%;
+    overflow: hidden;
+}
 
-.caixa{
-    border: solid ;
-    width: 300px;
-    height: 500px;
+.slideshow img {
+    display: none;
+    width: 100%;
+}
+
+.slideshow img:first-child {
+    display: block;
+}
+
+.caixa {
+    border: solid red;
+    width: 600px;
+    height: 600px; /* Defina a altura desejada para o contêiner */
+    display: flex;
+    align-items: center; /* Centralizar verticalmente */
+    justify-content: center; /* Centralizar horizontalmente */
+}
+
+.caixa img {
+    width: 100%; /* Ocupar toda a largura do contêiner */
+    height: 100%; /* Ocupar toda a altura do contêiner */
+    object-fit: cover; /* Manter proporção da imagem */
+    border-radius: 10px; /* Opcional: arredondar bordas */
+}
+main#pagina div.conteiner div#AcP h1{
+    color: #003cff;
 }
 .conteiner{
     display: flex;
@@ -181,7 +223,9 @@ footer {
     justify-content: center;
     cursor: pointer;
 }
-
+.modal-content h2{
+    color: black;
+}
 .contato h1 {
     margin: 0;
     font-size: 1.3em;
@@ -201,30 +245,129 @@ footer {
 }
 
 /* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
+/* Fundo do modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* The Close Button */
+/* Conteúdo do modal */
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botão de fechar */
 .close-button {
-    color: #aaa;
-    float: right;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #fff;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
 }
-  
+
 .close-button:hover,
 .close-button:focus {
-    color: rgb(255, 0, 0);
-    text-decoration: none;
-    cursor: pointer;
+    color: #ccc;
 }
+
+/* Título do modal */
+.modal-title {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-family: 'Arial Black', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Labels */
+label {
+    color: #555;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Inputs e textarea */
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 100px;
+}
+
+/* Botão de envio */
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Mensagem de status */
+.form-status {
+    margin-top: 10px;
+    color: #555;
+    font-style: italic;
+}
+
+
 
 /* Estilo específico para centralizar o carrossel no produtos.html */
 .center-carousel {
     justify-content: center; /* Centraliza horizontalmente */
+}
+
+.buy-button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px 0;
+    background-color: #ed1b24;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+.buy-button:hover {
+    background-color: #8b0000;
 }
